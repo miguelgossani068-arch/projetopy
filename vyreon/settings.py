@@ -1,0 +1,47 @@
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = "django-insecure-vyreon-projeto-simples-para-curso"
+
+DEBUG = True
+
+ALLOWED_HOSTS = []
+
+INSTALLED_APPS = [
+    "django.contrib.staticfiles",
+    "core",
+]
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "django.middleware.common.CommonMiddleware",
+]
+
+ROOT_URLCONF = "vyreon.urls"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [],
+        },
+    },
+]
+
+WSGI_APPLICATION = "vyreon.wsgi.application"
+
+LANGUAGE_CODE = "pt-br"
+
+TIME_ZONE = "America/Sao_Paulo"
+
+USE_I18N = True
+
+USE_TZ = True
+
+STATIC_URL = "static/"
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
