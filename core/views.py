@@ -2,6 +2,15 @@ from django.shortcuts import render
 
 
 def home(request):
+    perfil = None
+
+    if request.method == "POST":
+        perfil = {
+            "nome": request.POST.get("nome", "").strip(),
+            "nick": request.POST.get("nick", "").strip(),
+            "jogo": request.POST.get("jogo", "").strip(),
+        }
+
     recursos = [
         {
             "numero": "01",
@@ -66,5 +75,6 @@ def home(request):
             "jogos": jogos,
             "ranking": ranking,
             "passos": passos,
+            "perfil": perfil,
         },
     )

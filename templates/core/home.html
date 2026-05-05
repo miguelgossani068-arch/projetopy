@@ -188,6 +188,51 @@
             </div>
           </div>
         </section>
+
+        <section class="glass rounded-3 p-4 mt-4">
+          <div class="row g-4 align-items-start">
+            <div class="col-lg-6">
+              <h2 class="h3 mb-3">Criar perfil gamer</h2>
+              <form method="post" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-6">
+                  <label class="form-label" for="nome">Nome</label>
+                  <input class="form-control" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label" for="nick">Nick</label>
+                  <input class="form-control" id="nick" name="nick" placeholder="Ex: Player01" required>
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="jogo">Jogo favorito</label>
+                  <input class="form-control" id="jogo" name="jogo" placeholder="Ex: Nebula Run" required>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-info fw-semibold" type="submit">Cadastrar perfil</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-lg-6">
+              {% if perfil %}
+                <div class="game-card rounded-3 p-4">
+                  <span class="badge text-bg-info mb-3">Perfil cadastrado</span>
+                  <h3 class="h4">{{ perfil.nick }}</h3>
+                  <p class="mb-1">Nome: {{ perfil.nome }}</p>
+                  <p class="mb-0 text-white-50">Jogo favorito: {{ perfil.jogo }}</p>
+                </div>
+              {% else %}
+                <div class="game-card rounded-3 p-4">
+                  <span class="badge text-bg-light mb-3">Preview</span>
+                  <h3 class="h4">Seu perfil aparece aqui</h3>
+                  <p class="mb-0 text-white-50">
+                    Preencha o formulario para o Django receber os dados e mostrar na tela.
+                  </p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer class="py-4">
