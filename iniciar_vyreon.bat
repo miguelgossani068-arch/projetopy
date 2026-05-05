@@ -1,5 +1,6 @@
 @echo off
 title Vyreon - Django
+cd /d "%~dp0"
 
 echo ===============================
 echo Iniciando o projeto Vyreon
