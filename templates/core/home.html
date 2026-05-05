@@ -8,98 +8,194 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     >
-  </head>
-  <body class="bg-light">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark border-bottom border-info">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="/">Vyreon Arcade</a>
-        <span class="navbar-text">Jogos + Python + Django</span>
-      </div>
-    </nav>
+    <style>
+      body {
+        background: #0b1020;
+        color: #eef3ff;
+      }
 
-    <main class="container py-5">
-      <section class="p-4 p-md-5 mb-4 bg-dark text-white rounded-3 shadow-sm">
-        <div class="row align-items-center g-4">
+      .page-bg {
+        background:
+          radial-gradient(circle at top left, rgba(35, 210, 255, .22), transparent 32rem),
+          radial-gradient(circle at top right, rgba(255, 54, 168, .18), transparent 28rem),
+          linear-gradient(180deg, #101834 0%, #0b1020 48%, #111827 100%);
+        min-height: 100vh;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, .08);
+        border: 1px solid rgba(255, 255, 255, .16);
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, .25);
+        backdrop-filter: blur(12px);
+      }
+
+      .game-card {
+        background: #151f38;
+        border: 1px solid rgba(255, 255, 255, .12);
+        transition: transform .2s ease, border-color .2s ease;
+      }
+
+      .game-card:hover {
+        transform: translateY(-4px);
+        border-color: #23d2ff;
+      }
+
+      .accent-cyan { color: #23d2ff; }
+      .accent-lime { color: #a3ff12; }
+      .accent-pink { color: #ff36a8; }
+
+      .mini-screen {
+        background:
+          linear-gradient(90deg, rgba(35, 210, 255, .16) 1px, transparent 1px),
+          linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px),
+          #070b16;
+        background-size: 22px 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-bg">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container py-2">
+          <a class="navbar-brand fw-bold" href="/">Vyreon Arcade</a>
+          <span class="navbar-text text-info">Django + Bootstrap 5</span>
+        </div>
+      </nav>
+
+      <main class="container pb-5">
+        <section class="row align-items-center g-4 py-5">
           <div class="col-lg-7">
-            <p class="text-info fw-semibold mb-2">Aplicativo experimental de jogos</p>
-            <h1 class="display-5 fw-bold mb-3">Vyreon Arcade</h1>
-            <p class="lead mb-4">
-              Um mini site para apresentar jogos, ranking e dados dinamicos
-              usando Django no backend e Bootstrap 5 no visual.
+            <span class="badge rounded-pill text-bg-info mb-3">Projeto experimental de jogos</span>
+            <h1 class="display-4 fw-bold mb-3">Um hub gamer feito com Python</h1>
+            <p class="lead text-white-50 mb-4">
+              O Vyreon Arcade apresenta jogos, ranking e cards dinamicos em uma pagina
+              simples de entender, perfeita para explicar Django em sala.
             </p>
-            <a class="btn btn-info btn-lg fw-semibold" href="#como-funciona">
-              Ver como funciona
-            </a>
-          </div>
-          <div class="col-lg-5">
-            <div class="bg-black border border-info rounded-3 p-4">
-              <p class="mb-2 text-info">Modo apresentacao</p>
-              <h2 class="h4">Hub de jogos</h2>
-              <p class="mb-0">
-                A pagina parece um painel gamer, mas continua simples para
-                explicar: rota, view, template e Bootstrap.
-              </p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-info btn-lg fw-semibold" href="#jogos">Ver jogos</a>
+              <a class="btn btn-outline-light btn-lg" href="#como-funciona">Como funciona</a>
             </div>
           </div>
-        </div>
-      </section>
 
-      <section class="row g-3 mb-5">
-        {% for recurso in recursos %}
-          <div class="col-md-4">
-            <article class="card h-100 shadow-sm border-0">
-              <div class="card-body">
-                <h2 class="h5 card-title">{{ recurso.titulo }}</h2>
-                <p class="card-text">{{ recurso.texto }}</p>
+          <div class="col-lg-5">
+            <div class="glass rounded-3 p-4">
+              <div class="mini-screen rounded-3 p-4 mb-3">
+                <p class="text-info mb-1">PLAYER ONLINE</p>
+                <h2 class="fw-bold mb-3">18.420 pts</h2>
+                <div class="progress mb-3" role="progressbar" aria-label="Progresso">
+                  <div class="progress-bar bg-info" style="width: 82%"></div>
+                </div>
+                <p class="mb-0 text-white-50">Missao: apresentar um site bonito e simples.</p>
               </div>
-            </article>
+              <div class="row g-2 text-center">
+                <div class="col-4">
+                  <div class="rounded-3 bg-dark p-3">
+                    <strong>3</strong>
+                    <small class="d-block text-white-50">Jogos</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="rounded-3 bg-dark p-3">
+                    <strong>5</strong>
+                    <small class="d-block text-white-50">Passos</small>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="rounded-3 bg-dark p-3">
+                    <strong>100%</strong>
+                    <small class="d-block text-white-50">Django</small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        {% endfor %}
-      </section>
+        </section>
 
-      <section class="bg-white border rounded-3 p-4 shadow-sm mb-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h2 class="h3 mb-0">Jogos em destaque</h2>
-          <span class="badge text-bg-dark">Top 3</span>
-        </div>
-
-        <div class="table-responsive">
-          <table class="table align-middle">
-            <thead>
-              <tr>
-                <th>Jogo</th>
-                <th>Genero</th>
-                <th>Nota</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for jogo in jogos %}
-                <tr>
-                  <td class="fw-semibold">{{ jogo.nome }}</td>
-                  <td>{{ jogo.genero }}</td>
-                  <td><span class="badge text-bg-info">{{ jogo.nota }}</span></td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="como-funciona" class="bg-white border rounded-3 p-4 shadow-sm">
-        <h2 class="h3 mb-3">Como funciona</h2>
-        <ol class="list-group list-group-numbered">
-          {% for passo in passos %}
-            <li class="list-group-item">{{ passo }}</li>
+        <section class="row g-3 mb-4">
+          {% for recurso in recursos %}
+            <div class="col-md-4">
+              <article class="game-card rounded-3 p-4 h-100">
+                <span class="text-info fw-bold">{{ recurso.numero }}</span>
+                <h2 class="h5 mt-3">{{ recurso.titulo }}</h2>
+                <p class="text-white-50 mb-0">{{ recurso.texto }}</p>
+              </article>
+            </div>
           {% endfor %}
-        </ol>
-      </section>
-    </main>
+        </section>
 
-    <footer class="border-top py-4">
-      <div class="container text-center text-secondary">
-        Vyreon Arcade - projeto simples para apresentacao em curso.
-      </div>
-    </footer>
+        <section id="jogos" class="glass rounded-3 p-4 mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h3 mb-0">Jogos em destaque</h2>
+            <span class="badge text-bg-dark">Top 3</span>
+          </div>
+
+          <div class="row g-3">
+            {% for jogo in jogos %}
+              <div class="col-md-4">
+                <article class="game-card rounded-3 p-4 h-100">
+                  <span class="badge text-bg-light mb-3">{{ jogo.status }}</span>
+                  <h3 class="h4">{{ jogo.nome }}</h3>
+                  <p class="text-white-50">{{ jogo.genero }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="accent-{{ jogo.cor }} fw-bold">Nota {{ jogo.nota }}</span>
+                    <span class="btn btn-sm btn-outline-info">Detalhes</span>
+                  </div>
+                </article>
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+
+        <section class="row g-4">
+          <div class="col-lg-7">
+            <div class="glass rounded-3 p-4 h-100">
+              <h2 class="h3 mb-3">Ranking da semana</h2>
+              <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Jogador</th>
+                      <th>Jogo</th>
+                      <th>Pontos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for item in ranking %}
+                      <tr>
+                        <td>{{ item.posicao }}</td>
+                        <td class="fw-semibold">{{ item.jogador }}</td>
+                        <td>{{ item.jogo }}</td>
+                        <td><span class="badge text-bg-info">{{ item.pontos }}</span></td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div id="como-funciona" class="glass rounded-3 p-4 h-100">
+              <h2 class="h3 mb-3">Como funciona</h2>
+              <ol class="list-group list-group-numbered">
+                {% for passo in passos %}
+                  <li class="list-group-item bg-transparent text-white border-secondary">
+                    {{ passo }}
+                  </li>
+                {% endfor %}
+              </ol>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="py-4">
+        <div class="container text-center text-white-50">
+          Vyreon Arcade - projeto Django simples, visual gamer e pronto para apresentar.
+        </div>
+      </footer>
+    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

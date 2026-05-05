@@ -4,30 +4,58 @@ from django.shortcuts import render
 def home(request):
     recursos = [
         {
-            "titulo": "Catalogo",
-            "texto": "Mostra jogos em destaque usando dados enviados pela view.",
+            "numero": "01",
+            "titulo": "Catalogo inteligente",
+            "texto": "A view envia uma lista de jogos e o template monta os cards automaticamente.",
         },
         {
-            "titulo": "Ranking",
-            "texto": "Simula uma lista de pontuacoes para deixar a tela mais interessante.",
+            "numero": "02",
+            "titulo": "Ranking dinamico",
+            "texto": "Os jogadores aparecem em uma tabela simples, como um placar de arcade.",
         },
         {
-            "titulo": "Interface",
-            "texto": "Usa Bootstrap 5 para criar uma pagina bonita com pouco codigo.",
+            "numero": "03",
+            "titulo": "Visual responsivo",
+            "texto": "Bootstrap organiza tudo para funcionar bem no computador e no celular.",
         },
     ]
 
     jogos = [
-        {"nome": "Nebula Run", "genero": "Corrida espacial", "nota": "9.1"},
-        {"nome": "Pixel Quest", "genero": "Aventura 2D", "nota": "8.7"},
-        {"nome": "Arena Code", "genero": "Batalha estrategica", "nota": "8.4"},
+        {
+            "nome": "Nebula Run",
+            "genero": "Corrida espacial",
+            "nota": "9.1",
+            "status": "Popular",
+            "cor": "cyan",
+        },
+        {
+            "nome": "Pixel Quest",
+            "genero": "Aventura 2D",
+            "nota": "8.7",
+            "status": "Novo",
+            "cor": "lime",
+        },
+        {
+            "nome": "Arena Code",
+            "genero": "Batalha estrategica",
+            "nota": "8.4",
+            "status": "Competitivo",
+            "cor": "pink",
+        },
+    ]
+
+    ranking = [
+        {"posicao": 1, "jogador": "MIGUEL", "jogo": "Nebula Run", "pontos": "18.420"},
+        {"posicao": 2, "jogador": "CODEX", "jogo": "Arena Code", "pontos": "16.900"},
+        {"posicao": 3, "jogador": "DJANGO", "jogo": "Pixel Quest", "pontos": "14.250"},
     ]
 
     passos = [
         "O navegador acessa http://localhost:8000.",
         "O Django encontra a rota principal.",
-        "A view monta listas com recursos e jogos.",
-        "O template exibe os dados usando Bootstrap 5.",
+        "A view cria listas com jogos, ranking e recursos.",
+        "O template percorre essas listas com for.",
+        "O Bootstrap 5 deixa a tela responsiva e organizada.",
     ]
 
     return render(
@@ -36,6 +64,7 @@ def home(request):
         {
             "recursos": recursos,
             "jogos": jogos,
+            "ranking": ranking,
             "passos": passos,
         },
     )
